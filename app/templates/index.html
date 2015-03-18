@@ -1,92 +1,106 @@
 <!doctype html>
-<html<% if (includeModernizr) { %> class="no-js"<% } %> lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= appname %></title>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= appname %></title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <% if (includeModernizr) { %>
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild --><% } %>
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <% if (includeBootstrap) { %>
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted"><%= appname %></h3>
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+</head>
+<body>
+  <!--[if lt IE 10]>
+  <p class="browserupgrade">
+    You are using an <strong>outdated</strong>
+    browser. Please
+    <a href="http://browsehappy.com/">upgrade your browser</a>
+    to improve your experience.
+  </p>
+  <![endif]-->
+
+  <nav class="navbar navbar-blank">
+      <div class="container">
+          <div class="navbar-header">
+              <button class="navbar-toggle btn btn-primary" type="button" data-toggle="collapse" data-target="#main-nav">
+                  <i class="fa fa-fw fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="#">
+                  Sample
+              </a>
+          </div>
+          <!-- navbar-header -->
+          <div class="collapse navbar-collapse" id="main-nav">
+              <ul class="nav navbar-nav navbar-right">
+                  <li> <a href="home.html">Home</a> </li>
+                  <li> <a href="tabs.html">Tabs</a> </li>
+                  <li> <a href="header.html">Header</a> </li>
+                  <li> <a href="post-list-classic.html">Post Classic</a> </li>
+                  <li> <a href="post-list-thumb.html">Post Thumb</a> </li>
+                  <li> <a href="post-list-thumb-left.html">Post Thumb Left</a> </li>
+                  <li> <a href="post-single.html">Post Single</a> </li>
+                  <li> <a href="sidebar.html">Sidebar</a> </li>
+                  <li> <a href="testi.html">Testi</a> </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="">Pages <i class="caret"></i></a>
+                      <ul class="dropdown-menu">
+                          <li>
+                              <a href="">About Us</a>
+                          </li>
+                          <li>
+                              <a href="">Profile</a>
+                          </li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+          <!-- navbar-collapse -->
       </div>
+      <!-- container -->
+  </nav>
+  <!-- nav -->
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
+  <div id="content">
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-          <% if (includeSass) { %>
-          <h4>Sass</h4>
-          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-          <% } %>
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p><% if (includeModernizr) { %>
-          <h4>Modernizr</h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          <% } %>
-        </div>
-      </div>
+  </div>
+  <!-- content -->
 
-      <div class="footer">
-        <p>♥ from the Yeoman team</p>
-      </div>
-    </div>
-    <% } else { %>
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li><% if (includeSass) { %>
-        <li>Sass</li><% } %><% if (includeModernizr) { %>
-        <li>Modernizr</li><% } %>
-      </ul>
-    </div>
-    <% } %>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
-  </body>
+  <!-- build:js scripts/plugins.js -->
+  <script src="/bower_components/bootstrap/js/affix.js"></script>
+  <script src="/bower_components/bootstrap/js/alert.js"></script>
+  <script src="/bower_components/bootstrap/js/dropdown.js"></script>
+  <script src="/bower_components/bootstrap/js/tooltip.js"></script>
+  <script src="/bower_components/bootstrap/js/modal.js"></script>
+  <script src="/bower_components/bootstrap/js/transition.js"></script>
+  <script src="/bower_components/bootstrap/js/button.js"></script>
+  <script src="/bower_components/bootstrap/js/popover.js"></script>
+  <script src="/bower_components/bootstrap/js/carousel.js"></script>
+  <script src="/bower_components/bootstrap/js/scrollspy.js"></script>
+  <script src="/bower_components/bootstrap/js/collapse.js"></script>
+  <script src="/bower_components/bootstrap/js/tab.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+</body>
 </html>

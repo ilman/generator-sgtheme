@@ -1,10 +1,10 @@
 {
-  "name": "generator-gulp-webapp",
-  "version": "0.3.0",
-  "description": "Scaffold out a front-end web app",
+  "name": "generator-sgtheme",
+  "version": "0.0.1",
+  "description": "Scaffold out a sgtheme style template",
   "license": "BSD",
-  "repository": "yeoman/generator-gulp-webapp",
-  "author": "The Yeoman Team",
+  "repository": "ilman/generator-sgtheme",
+  "author": "M. Ilman Maulana",
   "main": "app/index.js",
   "engines": {
     "node": ">=0.10.0",
@@ -19,7 +19,7 @@
   "keywords": [
     "yeoman-generator",
     "web",
-    "app",
+    "theme",
     "front-end",
     "h5bp",
     "modernizr",

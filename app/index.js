@@ -43,40 +43,7 @@ module.exports = yeoman.generators.Base.extend({
       this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, jQuery, and a gulpfile.js to build your app.'));
     }
 
-    var prompts = [{
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: [{
-        name: 'Sass',
-        value: 'includeSass',
-        checked: true
-      }, {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: true
-      }, {
-        name: 'Modernizr',
-        value: 'includeModernizr',
-        checked: true
-      }]
-    }];
-
-    this.prompt(prompts, function (answers) {
-      var features = answers.features;
-
-      var hasFeature = function (feat) {
-        return features.indexOf(feat) !== -1;
-      };
-
-      // manually deal with the response, get back and store the results.
-      // we change a bit this way of doing to automatically do this in the self.prompt() method.
-      this.includeSass = hasFeature('includeSass');
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeModernizr = hasFeature('includeModernizr');
-
-      done();
-    }.bind(this));
+    done();
   },
 
   writing: {
@@ -100,16 +67,10 @@ module.exports = yeoman.generators.Base.extend({
         dependencies: {}
       };
 
-      if (this.includeBootstrap) {
-        var bs = 'bootstrap' + (this.includeSass ? '-sass-official' : '');
-        bower.dependencies[bs] = '~3.3.1';
-      } else {
-        bower.dependencies.jquery = '~2.1.1';
-      }
-
-      if (this.includeModernizr) {
-        bower.dependencies.modernizr = '~2.8.1';
-      }
+      bower.dependencies.jquery = '~2.1.1';
+      bower.dependencies.bootstrap = '~3.3.2';
+      bower.dependencies.fontawesome = '~4.3.0';
+      bower.dependencies.modernizr = '~2.8.1';
 
       this.copy('bowerrc', '.bowerrc');
       this.write('bower.json', JSON.stringify(bower, null, 2));
@@ -129,65 +90,27 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('robots.txt', 'app/robots.txt');
     },
 
-    mainStylesheet: function () {
-      var css = 'main';
-
-      if (this.includeSass) {
-        css += '.scss';
-      } else {
-        css += '.css';
-      }
-
-      this.copy(css, 'app/styles/' + css);
-    },
-
-    writeIndex: function () {
-      this.indexFile = this.src.read('index.html');
-      this.indexFile = this.engine(this.indexFile, this);
-
-      // wire Bootstrap plugins
-      if (this.includeBootstrap) {
-        var bs = '/bower_components/';
-
-        if (this.includeSass) {
-          bs += 'bootstrap-sass-official/assets/javascripts/bootstrap/';
-        } else {
-          bs += 'bootstrap/js/';
-        }
-
-        this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-          bs + 'affix.js',
-          bs + 'alert.js',
-          bs + 'dropdown.js',
-          bs + 'tooltip.js',
-          bs + 'modal.js',
-          bs + 'transition.js',
-          bs + 'button.js',
-          bs + 'popover.js',
-          bs + 'carousel.js',
-          bs + 'scrollspy.js',
-          bs + 'collapse.js',
-          bs + 'tab.js'
-        ]);
-      }
-
-      this.indexFile = this.appendFiles({
-        html: this.indexFile,
-        fileType: 'js',
-        optimizedPath: 'scripts/main.js',
-        sourceFileList: ['scripts/main.js']
-      });
-
-      this.write('app/index.html', this.indexFile);
-    },
-
     app: function () {
       this.mkdir('app');
-      this.mkdir('app/scripts');
-      this.mkdir('app/styles');
       this.mkdir('app/images');
       this.mkdir('app/fonts');
-      this.copy('main.js', 'app/scripts/main.js');
+      this.directory('scripts', 'app/scripts');
+      this.directory('styles', 'app/styles');
+      this.template('index.html', 'app/index.html');
+      this.copy('block.html', 'app/block.html');
+      this.copy('divider.html', 'app/divider.html');
+      this.copy('footer.html', 'app/footer.html');
+      this.copy('header.html', 'app/header.html');
+      this.copy('home.html', 'app/home.html');
+      this.copy('post-list-classic.html', 'app/post-list-classic.html');
+      this.copy('post-list-thumb-left.html', 'app/post-list-thumbleft.html');
+      this.copy('post-list-thumb.html', 'app/post-list-thumb.html');
+      this.copy('post-single.html', 'app/post-single.html');
+      this.copy('sidebar.html', 'app/sidebar.html');
+      this.copy('subheader.html', 'app/subheader.html');
+      this.copy('tabs.html', 'app/tabs.html');
+      this.copy('testi.html', 'app/testi.html');
+      this.copy('widget.html', 'app/widget.html');
     }
   },
 
@@ -217,20 +140,10 @@ module.exports = yeoman.generators.Base.extend({
       wiredep({
         bowerJson: bowerJson,
         directory: 'bower_components',
-        exclude: ['bootstrap-sass', 'bootstrap.js'],
+        exclude: ['bootstrap', 'bootstrap.js'],
         ignorePath: /^(\.\.\/)*\.\./,
         src: 'app/index.html'
       });
-
-      if (this.includeSass) {
-        // wire Bower packages to .scss
-        wiredep({
-          bowerJson: bowerJson,
-          directory: 'bower_components',
-          ignorePath: /^(\.\.\/)+/,
-          src: 'app/styles/*.scss'
-        });
-      }
 
       // ideally we should use composeWith, but we're invoking it here
       // because generator-mocha is changing the working directory

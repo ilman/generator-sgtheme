@@ -54,10 +54,20 @@
 	}
 }
 
-/*----border+outline color list---*/
-@list: primary, success, danger, warning, info;
+/*---position control---*/
 
-@list-length:5;
+@media (min-width: @screen-md-min){
+	.pos-relative-md{ position:relative; }
+	.pos-absolute-md{ position:absolute; }
+	.pos-fixed-md{ position:fixed; }
+}
+
+/*----color list---*/
+@list: primary, success, danger, warning, info, secondary, 'white', 'default', 'gray', 'link';
+
+@list-length:10;
+
+/*----background color list---*/
 
 .loop-bg(@i) when (@i > 0) {
    @str: e(extract(@list, @i));
@@ -94,6 +104,10 @@
 .loop-text(@list-length); 
 
 .text-default{ color:@text-color !important; }
+
+/*----button color list---*/
+
+
 
 /*----outline color list---*/
 
